@@ -96,7 +96,9 @@ def get_sources_list_dir(strip_missing_dirs=True):
         # we can't use etc/ros because environment config does not carry over under sudo
         etc_ros = rospkg.get_etc_ros_dir()
     else:
-        etc_ros = '/etc/ros'
+        # TODO(lucasw) don't want to require sudo, is there a command line option
+        # to not call this at all?
+        etc_ros = 'etc/ros'
     # compute default system wide sources directory
     sys_sources_list_dir = os.path.join(etc_ros, 'rosdep', SOURCES_LIST_DIR)
     sources_list_dirs = get_sources_list_dirs(sys_sources_list_dir, strip_missing_dirs)
